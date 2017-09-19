@@ -1,0 +1,42 @@
+
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div ng-app="app">
+            <div ng-controller="mainController">
+                <button ng-click="getUser()">Get All</button>
+                <p >
+                   {{users}}
+                </P>
+            </div>
+            
+                
+            
+            
+        </div>
+    <script>
+        var app =angular.module("app",[]).controller("mainController",
+        function($scope,$http)
+        {
+            $scope.users=[];
+            $scope.getUser=function(){
+                $http.get("http://localhost:8080/RESTService/api/user").then(
+                function (response){
+                    
+                    console.log(response.data);
+                    $scope.users=response.data;
+                }); 
+            };
+                
+        }
+        )
+    </script>
+    </body>
+    
+</html>
